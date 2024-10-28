@@ -1,0 +1,26 @@
+body{
+    background-color: #ffffff;
+    margin: 0 auto;
+}
+header{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#cabecalho{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.col-logo{
+    width: 25%;
+}
+.col-menu{
+    width: 50%;
+}
+.interativos{
+    width: 25%;
+}
+nav.menu ul{
+    display: flex;
+}
