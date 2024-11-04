@@ -1,10 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --vinho: #8B2119;
+    --verde: #01AA95;
+    --grad-vinho: linear-gradient(305deg, #8B2119, #B84C44);
+}
+
 body{
     background-color: #ffffff;
     margin: 0 auto;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    color: #8c8c8c;
 }
+
+p{
+    margin-bottom: 1.5em;
+}
+
+.sub-titulo{
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 4px;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--vinho);
+    margin-bottom: 5px;
+}
+
+h2{
+    font-size: 48px;
+    line-height: 50px;
+    letter-spacing: -2px;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+h3{
+    font-size: 32px;
+    line-height: 38px;
+    letter-spacing: -2px;
+    font-weight: 500;
+    color: #444444;
+    text-align: center;
+}
+
+nav.menu ul li a:hover, nav.menu ul li a:active, .interativos li:hover a, .interativos li:hover a:before, #titulo ul li:first-child a:hover {
+    color: var(--vinho);
+}
+
+/* Estilo do header */
+
 header{
     max-width: 1200px;
     margin: 0 auto;
+    height: 112px;
+    align-content: center;
 }
 
 #cabecalho{
@@ -12,15 +67,416 @@ header{
     justify-content: center;
     align-items: center;
 }
+
 .col-logo{
     width: 25%;
 }
+
 .col-menu{
+    width: 55%;
+    padding-right: 25px;
+}
+
+.interativos{
+    width: 20%;
+}
+
+nav.menu ul, .interativos ul{
+    display: flex;
+    justify-content: right;
+}
+
+nav.menu ul li, .interativos ul li{
+    list-style: none;
+    padding: 0 25px;
+}
+
+nav.menu ul li a{
+    text-decoration: none;
+    color: #444444;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.interativos ul li a{
+    text-decoration: none;
+    color: #8c8c8c
+}
+
+.interativos li:first-child a:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f002";
+    display: inline;
+    padding-right: 15px;
+    vertical-align: text-top;
+    font-weight: 700;
+}
+
+.interativos li:last-child a:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f007";
+    display: inline;
+    padding-right: 15px;
+    vertical-align: text-top;
+    font-weight: 700;
+}
+
+.interativos li:last-child{
+    border-left: 1px solid #dedede;
+}
+
+/* Seção Título */
+
+#titulo{
+    background-image: linear-gradient(90deg, #f0f0f0, #f2f2f2);
+    padding: 45px 0;
+    margin-bottom: 70px;
+}
+
+#titulo h1{
+    font-size: 60px;
+    line-height: 70px;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    letter-spacing: -2px;
+}
+
+#titulo ul{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    list-style: none;
+}
+
+#titulo ul li{
+    padding: 7px;
+}
+
+#titulo ul li a{
+    text-decoration: none;
+}
+
+#titulo ul li span{
+    color: #d9d9d9;
+}
+
+#titulo ul li:first-child a{
+    color: #555555;
+}
+
+#titulo ul li:last-child a{
+    color: var(--vinho);
+}
+
+/* Estilo Seção Sobre */
+
+#conteudo-sobre{
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.cols{
+    display: flex;
+    justify-content: center;
+}
+
+.large-70{
+    width: 70%;
+    padding-right: 40px;
+    align-content: center;
+}
+
+.large-30{
+    width: 30%;
+}
+
+.large-30 img{
+    max-width: 368px;
+    width: 100%;
+    height: 389px;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+/* Estilo Seção Destaque */
+
+#conteudo-destaque{
+    width: 100%;
+    padding: 0 60px;
+    margin-bottom: 70px;
+}
+
+.col-dtq{
+    padding: 50px 70px;
+    background-image: var(--grad-vinho);
+    border-radius: 50px;
+}
+
+.col-dtq .large-50{
+    width: 50%;
+    color: #ffffff;
+    align-content: center;
+    text-align: left;
+}
+
+.col-dtq .large-50 p{
+    margin-bottom: 0;
+}
+
+.col-dtq .large-50 h2{
+    text-align: left;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+.col-dtq .large-50 .sub-titulo{
+    text-align: left;
+    color: #ffffff;
+    margin-bottom: 7px;
+}
+
+/* Estilo Seção Equipe */
+
+#conteudo-equipe{
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 70px;
+}
+
+#conteudo-equipe p{
+    max-width: 1000px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#conteudo-equipe .cols{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.integrante{
+    width: 33.333%;
+}
+
+.integrante img{
+    max-width: 100%;
+    width: 360px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 40px;
+}
+
+.integrante h3{
+    max-width: 270px;
+    min-height: 80px;
+    margin: 0 auto;
+    margin-top: 35px;
+}
+
+.integrante p{
+    margin-top: 15px !important;
+}
+
+.integrante .redes-sociais{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.integrante .redes-sociais div{
+    padding: 0 5px;
+}
+
+.integrante .redes-sociais a{
+    color: var(--vinho);
+}
+
+.integrante .redes-sociais i{
+    font-size: 20px;
+}
+
+.integrante span{
+    background-color: rgba(0, 0, 0, 0.05);
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    align-content: center;
+    border-radius: 30px;
+    transition: all 0.3s;
+}
+
+.integrante span:hover{
+    background-color: var(--vinho);
+}
+
+.integrante .redes-sociais div:hover a{
+    color: #ffffff !important;
+}
+
+/* Estilo do rodapé */
+
+footer{
+    width: 100%;
+    padding: 0 60px;
+    color: #ffffff;
+}
+
+.footer-top{
+    background-image: var(--grad-vinho);
+    padding: 50px 70px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+}
+
+.footer-top h2{
+    color: #ffffff;
+    text-align: left;
+}
+
+.footer-top h2 span{
+    font-weight: 300;
+}
+
+.footer-bottom{
+    color: #8c8c8c;
+}
+
+.large-50{
     width: 50%;
 }
-.interativos{
+
+.footer-top .large-50:first-child{
+    padding-right: 30px;
+}
+
+.footer-top .large-50:last-child{
+    padding-left: 50px;
+    align-content: center;
+}
+
+form [type="email"]{
+    width: 100%;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 40px;
+    border-width: 0;
+    padding: 0 25px;
+    color: #ffffff;
+}
+
+form input::placeholder{
+    color: #c6aaaa;
+    font-size: 16px;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+form button{
+    font-weight: 700;
+    height: 60px;
+    width: 170px;
+    border-radius: 40px;
+    border: 0;
+    position: relative;
+    float: right;
+    top: -60px;
+    font-size: 18px;
+    color: var(--vinho);
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+form [type="checkbox"]{
+    margin: 0 10px 0 15px;
+}
+
+form label{
+    color: #c6aaaa;
+}
+
+footer hr{
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 15px 0 40px;
+}
+
+.large-35{
+    width: 35%;
+}
+
+.large-25{
     width: 25%;
 }
-nav.menu ul{
+
+.large-20{
+    width: 20%;
+}
+
+footer .redes-sociais{
     display: flex;
+    justify-content: left;
+    text-align: center;
+    margin-top: 15px;
+}
+
+footer .redes-sociais p{
+    margin-bottom: 0;
+    padding: 0 5px;
+}
+
+footer .redes-sociais a{
+    color: #ffffff;
+}
+
+footer .redes-sociais i{
+    font-size: 20px;
+    padding-top: 5px;
+}
+
+footer .redes-sociais span{
+    background-color: rgba(255, 255, 255, 0.1);
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    align-content: center;
+    border-radius: 30px;
+    transition: all 0.3s;
+}
+
+footer .redes-sociais span:hover{
+    background-color: var(--vinho);
+}
+
+footer .redes-sociais div:hover a{
+    color: #ffffff !important;
+}
+
+footer .large-20 ul{
+    list-style: none;
+}
+
+footer .large-20 ul li{
+    padding: 3px 0;
+}
+
+footer .large-20 ul a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+footer .large-50 p{
+    margin-bottom: 0;
+}
+
+footer h4{
+    margin-bottom: 15px;
+}
+
+.footer-bottom{
+    justify-content: space-between;
+    padding: 0 60px;
+}
+
+.footer-bottom img{
+    width: 90px;
 }
