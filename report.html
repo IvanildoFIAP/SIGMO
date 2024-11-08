@@ -7,11 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Início - SIGMO</title>
+    <title>Report de Problemas - SIGMO</title>
 </head>
 
 <body>
@@ -44,69 +42,59 @@
         </div>
     </header>
     <main>
-        <!-- Hero/Banner -->
-        <section id="conteudo-hero">
-            <div class="banner">
-                <!-- <img src="img/banner-home.png" alt="Hero Background" class="hero-background"> -->
-                <h1 class="hero-titulo">Sua participação para <br>um <span>transporte melhor</span></h1>
-                <p class="hero-description">A mudança começa com você! Relate problemas e tire suas dúvidas em tempo real!
-                </p>
-                <div class="cta-container">
-                    <a href="#" class="botao-cta cta-primario">Relatar agora</a>
-                    <a href="#" class="botao-cta cta-secundario">Tirar dúvidas</a>
+        <!-- Hero Report -->
+        <section id="titulo-report">
+            <div class="hero-report">
+                <div class="hero-report-conteudo">
+                    <p class="sub-titulo">Facilite a Melhoria do serviço</p>
+                    <h1>Relate Problemas Rapidamente</h1>
+                    <p class="hero-report-descricao">
+                        Ajude a manter o transporte funcionando sem falhas. Informe qualquer
+                        problema que você encontrar de forma simples e direta. Sua participação é
+                        essencial para melhorar a qualidade do serviço.
+                    </p>
                 </div>
             </div>
         </section>
-        <!-- Seção Funcionamento -->
-        <section id="funcionamento">
-            <div class="bloco-inicial">
-                <p class="sub-titulo">como funciona</p>
-                <h2>Relato de problemas</h2>
-                <p class="descricao">Identificar e relatar problemas nunca foi tão fácil! Com apenas alguns cliques,
-                    você pode nos ajudar a melhorar a infraestrutura das estações e dos trens. Se você notar uma falha, um
-                    vazamento ou qualquer outra questão, acesse a nossa página de reporte e siga o passo a passo. Lembre-se, sua
-                    observação pode fazer a diferença!</p>
-            </div>
-            <div class="passo-a-passo">
-                <div class="passo-linha">
-                    <div class="passo-coluna">
-                        <div class="passo-conteudo">
-                            <div class="passo-topo">
-                                <span class="passo-numero">1</span>
-                                <h4 class="passo-titulo">Acesse a página de reporte</h4>
-                            </div>
-                            <p class="passo-descricao">Inicie sua jornada de contribuição visitando a página dedicada a
-                                reportes. Aqui, você encontrará um ambiente amigável e intuitivo, projetado para facilitar
-                                seu relato.</p>
-                            <div class="passo-topo">
-                                <span class="passo-numero">2</span>
-                                <h4 class="passo-titulo">Selecione o tipo de problema</h4>
-                            </div>
-                            <p class="passo-descricao">Escolha entre diferentes categorias, como infraestrutura,
-                                equipamentos, ou segurança. Isso nos ajudará a entender seu relato e a direcioná-lo para a
-                                equipe correta.</p>
-                        </div>
-                    </div>
-                    <div class="passo-coluna">
-                        <div class="passo-conteudo">
-                            <div class="passo-topo">
-                                <span class="passo-numero">3</span>
-                                <h4 class="passo-titulo">Descreva o problema</h4>
-                            </div>
-                            <p class="passo-descricao">Forneça uma descrição do problema que observou. Se puder, anexe uma
-                                foto para ilustrar a situação. Isso torna seu reporte mais confiável e ajuda nossa equipe a
-                                agir rapidamente.</p>
-                            <div class="passo-topo">
-                                <span class="passo-numero">4</span>
-                                <h4 class="passo-titulo">Análise e ações</h4>
-                            </div>
-                            <p class="passo-descricao">Após enviar seu relato, você receberá uma confirmação de que seu
-                                reporte foi registrado e nossa equipe analisará seu feedback para tomar as providências
-                                necessárias.</p>
-                        </div>
-                    </div>
+        <!-- Seção Report -->
+        <section id="secao-report">
+            <h2 class="secao-report-titulo">
+                Qual o tipo de problema que você encontrou?
+            </h2>
+            <p class="secao-report-descricao">
+                Selecione a categoria que melhor descreve o problema. Quanto mais preciso for
+                o relato, mais rápido podemos resolver!
+            </p>
+        
+            <div class="categorias-problema">
+                <div class="categoria-item">
+                    <img src="img/icon-infra.png" alt="Infraestrutura" class="categoria-icone" />
+                    <span class="categoria-titulo">Infraestrutura</span>
+                </div>
+                <div class="categoria-item active-category">
+                    <img src="img/icon-seguranca.png" alt="Segurança" class="categoria-icone" />
+                    <span class="categoria-titulo">Segurança</span>
+                </div>
+                <div class="categoria-item">
+                    <img src="img/icon-limpeza.png" alt="Conforto e limpeza" class="categoria-icone" />
+                    <span class="categoria-titulo">Conforto e limpeza</span>
+                </div>
+                <div class="categoria-item">
+                    <img src="img/icon-servicos.png" alt="Serviços" class="categoria-icone" />
+                    <span class="categoria-titulo">Serviços</span>
+                </div>
+                <div class="categoria-item">
+                    <img src="img/icon-outro.png" alt="Outro" class="categoria-icone" />
+                    <span class="categoria-titulo">Outro</span>
                 </div>
             </div>
+        
+            <div class="botoes-nav">
+                <button class="back-button">Voltar</button>
+                <button class="next-button">Prosseguir</button>
+            </div>
+        
+            <div class="divider"></div>
         </section>
         <!-- Cards Status -->
         <div class="status-cards-container">
@@ -273,64 +261,3 @@
 </body>
 
 </html>
-
-
-
-
-
-<section class="hero-section">
-    <div class="hero-content">
-        <p class="hero-subtitle">Facilite a Melhoria do Serviço</p>
-        <h1 class="hero-title">Relate Problemas Rapidamente</h1>
-        <p class="hero-description">
-            Ajude a manter o transporte funcionando sem falhas. Informe qualquer
-            problema que você encontrar de forma simples e direta. Sua participação é
-            essencial para melhorar a qualidade do serviço.
-        </p>
-    </div>
-</section>
-
-<section id="report-problem">
-    <h2 class="problem-section-title">
-        Qual o tipo de problema que você encontrou?
-    </h2>
-    <p class="problem-section-description">
-        Selecione a categoria que melhor descreve o problema. Quanto mais preciso for
-        o relato, mais rápido podemos resolver!
-    </p>
-
-    <div class="problem-categories">
-        <div class="category-item">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/543ad6e383a8dd63a191c388c04b5cbd1a72979e31ad5624432b843ffc927807?placeholderIfAbsent=true&apiKey=c73bc0ffa08f40b6baf0dc5957a984fb"
-                alt="Infraestrutura" class="category-icon" />
-            <span class="category-title">Infraestrutura</span>
-        </div>
-        <div class="category-item active-category">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c231e762682c4189ea81f9e964212da3b52da1117f40d7edadc710aa066a2230?placeholderIfAbsent=true&apiKey=c73bc0ffa08f40b6baf0dc5957a984fb"
-                alt="Segurança" class="category-icon" />
-            <span class="category-title">Segurança</span>
-        </div>
-        <div class="category-item">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ffa3668049fffc05ce7146e75f180a2b3b4e6dfa6ec23a7f8bb64ee40807add3?placeholderIfAbsent=true&apiKey=c73bc0ffa08f40b6baf0dc5957a984fb"
-                alt="Conforto e limpeza" class="category-icon" />
-            <span class="category-title">Conforto e limpeza</span>
-        </div>
-        <div class="category-item">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6cd50db811fad8f040af3d61a53c49045bf38757c8a4c676290ede0364cfed79?placeholderIfAbsent=true&apiKey=c73bc0ffa08f40b6baf0dc5957a984fb"
-                alt="Serviços" class="category-icon" />
-            <span class="category-title">Serviços</span>
-        </div>
-        <div class="category-item">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/484c3de41a424d2b5b4fb72846ba4d41d9b46460ddbc0c4fcc7cdf9b4f78759e?placeholderIfAbsent=true&apiKey=c73bc0ffa08f40b6baf0dc5957a984fb"
-                alt="Outro" class="category-icon" />
-            <span class="category-title">Outro</span>
-        </div>
-    </div>
-
-    <div class="navigation-buttons">
-        <button class="back-button">Voltar</button>
-        <button class="next-button">Prosseguir</button>
-    </div>
-
-    <div class="divider"></div>
-</section>

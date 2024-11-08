@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Status das Linhas - SIGMO</title>
+  </head>
+
+  <body>
+    <!-- Cabeçalho -->
+    <header>
+      <div id="cabecalho">
+        <div class="col-logo">
+          <a href="#">
+            <img
+              src="https://www.viamobilidade.com.br/custom/site-ccr-viamobilidade/img/logo-via-mobilidade.svg"
+              width="260"
+              height="35"
+              alt="logo ViaMobilidade"
+            />
+          </a>
+        </div>
+        <div class="col-menu">
+          <nav class="menu">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="sobre.html">Sobre Nós</a></li>
+              <li><a href="#">Relatar problema</a></li>
+              <li><a href="#">Status</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="interativos">
+          <ul>
+            <!-- Botão "Buscar" será acionado via JavaScript -->
+            <li><a href="#" id="buscar-btn">Buscar</a></li>
+            <li><a href="#">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- Titulo -->
+    <div id="titulo">
+      <h1>Status das Linhas</h1>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><span>•</span></li>
+        <li><a href="#">Status</a></li>
+      </ul>
+    </div>
+    <!-- Conteúdo principal -->
+    <main>
+      <!-- Status -->
+      <section class="status-content">
+        <div class="status-cards-container">
+            <div class="status-card-linha">
+            <a href="#linha-8">
+                <div class="status-card card-linha-8">
+                    <div class="status-card-conteudo">
+                    <h3 class="status-card-titulo">Acompanhe o status da Linha 8</h3>
+                    </div>
+                </div>
+            </a>
+            <a href="#linha-9">
+                <div class="status-card card-linha-9">
+                    <div class="status-card-conteudo">
+                    <h3 class="status-card-titulo">Acompanhe o status da Linha 9</h3>
+                    </div>
+                </div>
+            </a>
+            </div>
+          </div>
+        <div class="station-list">
+          <div class="station-columns">
+            <div id="linha-8" class="station-column">
+              <div class="line-status">
+                <div class="line-header">
+                  <div class="line-separator"></div>
+                  <h2 class="line-name">Linha 8 - Diamante</h2>
+                  <div class="line-separator"></div>
+                </div>
+                <div class="line-info">
+                  <p class="line-status-text">
+                    Status atual: <strong>Circulação de trens</strong>
+                  </p>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/93e35cd86831032a09553ddaee33fbd9734d20f357d3f3ef7eaaee0a4cbe8008?placeholderIfAbsent=true&apiKey=c73bc0ffa08f40b6baf0dc5957a984fb"
+                    alt="Status icon for Linha 8"
+                    class="status-icon"
+                  />
+                </div>
+              </div>
+              <div class="station-items">
+                <div class="station-names">
+                  <p class="station-name">Amador Bueno</p>
+                  <p class="station-name">Santa Rita</p>
+                  <p class="station-name">Itapevi</p>
+                  <p class="station-name">Engenheiro Cardoso</p>
+                  <p class="station-name">Sagrado Coração</p>
+                  <p class="station-name">Jandira</p>
+                  <p class="station-name">Jardim Silveira</p>
+                  <p class="station-name">Jardim Belval</p>
+                  <p class="station-name">Barueri</p>
+                  <p class="station-name">Antônio João</p>
+                  <p class="station-name">Santa Terezinha</p>
+                  <p class="station-name">Carapicuíba</p>
+                  <p class="station-name">General Miguel Costa</p>
+                  <p class="station-name">Quitaúna</p>
+                  <p class="station-name">Comandante Sampaio</p>
+                  <p class="station-name">Osasco</p>
+                  <p class="station-name">Presidente Altino</p>
+                  <p class="station-name">Imperatriz Leopoldina</p>
+                  <p class="station-name">Domingos de Morais</p>
+                  <p class="station-name">Lapa</p>
+                  <p class="station-name station-alert">
+                    Palmeiras-Barra Funda<br />
+                    <span
+                      >Devido às obras de modernização na estação
+                      Palmeiras-Barra Funda, passageiros com destino à estação
+                      Júlio Prestes devem embarcar no trem da plataforma
+                      4.</span
+                    >
+                  </p>
+                  <p class="station-name">Julio Prestes</p>
+                </div>
+              </div>
+            </div>
+            <div id="linha-9" class="station-column">
+              <div class="line-status">
+                <div class="line-header">
+                  <div class="line-separator"></div>
+                  <h2 class="line-name">Linha 9 - Esmeralda</h2>
+                  <div class="line-separator"></div>
+                </div>
+                <div class="line-info">
+                  <p class="line-status-text">
+                    Status atual: <strong>Operação normal</strong>
+                  </p>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/ee426bef01774900ea9eb79a5b4d5b6371ab067ea9f3624b95d42d44b1c45c64?placeholderIfAbsent=true&apiKey=c73bc0ffa08f40b6baf0dc5957a984fb"
+                    alt="Status icon for Linha 9"
+                    class="status-icon"
+                  />
+                </div>
+              </div>
+              <div class="station-items">
+                <div class="station-names">
+                  <p class="station-name">Ceasa</p>
+                  <p class="station-name">Villa Lobos-Jaguará</p>
+                  <p class="station-name">Cidade Universitária</p>
+                  <p class="station-name">Pinheiros</p>
+                  <p class="station-name">Hebraica-Rebouças</p>
+                  <p class="station-name">Cidade Jardim</p>
+                  <p class="station-name">Vila Olímpia</p>
+                  <p class="station-name">Berrini</p>
+                  <p class="station-name">Morumbi</p>
+                  <p class="station-name">Granja Julieta</p>
+                  <p class="station-name">Santo Amaro</p>
+                  <p class="station-name">Socorro</p>
+                  <p class="station-name">Jurubatuba</p>
+                  <p class="station-name">Autódromo</p>
+                  <p class="station-name">Primavera-Interlagos</p>
+                  <p class="station-name">Grajaú</p>
+                  <p class="station-name">Mendes - Vila Natal</p>
+                  <p class="station-name">Varginha</p>
+                  <p class="station-name">Domingos de Morais</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="report-problem">
+          <div class="report-content">
+            <div class="report-text">
+              <div class="report-header">
+                <p class="report-subtitle">Encontrou alguma anormalidade?</p>
+                <h2 class="report-title">Informe agora seu problema</h2>
+              </div>
+            </div>
+            <div class="report-button-wrapper">
+              <a href="/report.html">
+                <button class="report-button">Relatar um problema</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Rodapé -->
+    <footer>
+      <div class="footer-top">
+        <div class="cols">
+          <div class="large-50">
+            <h2>
+              <span>Acompanhe melhorias e</span>
+              <br />
+              novas funcionalidades
+            </h2>
+            <p>
+              Receba atualizações exclusivas sobre as inovações e melhorias do
+              sistema ViaMobilidade diretamente no seu e-mail.
+            </p>
+          </div>
+          <div class="large-50">
+            <form>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Digite seu e-mail"
+                required
+              /><br />
+              <button type="submit">Inscrever-se</button><br />
+              <input type="checkbox" id="aceite" name="aceite" required />
+              <label for="aceite">Eu aceito os termos e condições</label><br />
+            </form>
+          </div>
+        </div>
+        <hr />
+        <div class="cols">
+          <div class="large-35">
+            <a href="#">
+              <img
+                src="img/logo-via-mobilidade-branco.png"
+                width="260"
+                height="35"
+                alt="logo ViaMobilidade"
+              />
+            </a>
+            <div class="redes-sociais">
+              <p>
+                <a href="https://www.linkedin.com/company/viamobilidade-sp/">
+                  <span><i class="fab fa-linkedin-in"></i></span>
+                </a>
+              </p>
+              <p>
+                <a href="https://www.facebook.com/ViaMobilidadeLinhas8e9/">
+                  <span><i class="fab fa-facebook"></i></span>
+                </a>
+              </p>
+              <p>
+                <a href="https://www.instagram.com/viamobilidadelinhas8e9/">
+                  <span><i class="fab fa-instagram"></i></span>
+                </a>
+              </p>
+
+              <p>
+                <a href="https://twitter.com/_Linhas8e9">
+                  <span><i class="fab fa-twitter"></i></span>
+                </a>
+              </p>
+            </div>
+          </div>
+          <div class="large-20">
+            <h4>Links Úteis</h4>
+            <ul>
+              <li><a href="#">Sobre Nós</a></li>
+              <li><a href="#">Relatar Problema</a></li>
+              <li><a href="#">Status</a></li>
+            </ul>
+          </div>
+          <div class="large-50">
+            <h4>Telefone</h4>
+            <p><strong>0800.770.7106</strong></p>
+            <p>
+              Segunda a Sexta, das 6h30 às 22h00<br />
+              Sábado e Domingo, das 8h00 às 18h00
+            </p>
+          </div>
+          <div class="large-20">
+            <h4>Políticas</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://www.viamobilidade.com.br/politica-de-privacidade/"
+                  >Privacidade</a
+                >
+              </li>
+              <li>
+                <a href="https://www.viamobilidade.com.br/politica-de-cookies"
+                  >Cookies</a
+                >
+              </li>
+              <li>
+                <a href="https://www.viamobilidade.com.br/termos-de-uso"
+                  >Termos e condições</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom cols">
+        <div>
+          <p>© Copyright 2024 - ViaMobilidade. Todos os direitos reservados.</p>
+        </div>
+        <div>
+          <img
+            src="img/sigmo-logo.png"
+            alt="logo Sistema Inteligente de Gestão e Monitoramento Operacional"
+          />
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
