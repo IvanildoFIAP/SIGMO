@@ -18,43 +18,39 @@
   </head>
 
   <body>
-    <!-- Cabeçalho -->
+    <!-- Header -->
     <header>
       <div id="cabecalho">
-        <div class="col-logo">
-          <a href="#">
-            <img
-              src="https://www.viamobilidade.com.br/custom/site-ccr-viamobilidade/img/logo-via-mobilidade.svg"
-              width="260"
-              height="35"
-              alt="logo ViaMobilidade"
-            />
-          </a>
-        </div>
-        <div class="col-menu">
-          <nav class="menu">
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="sobre.html">Sobre Nós</a></li>
-              <li><a href="#">Relatar problema</a></li>
-              <li><a href="#">Status</a></li>
-            </ul>
-          </nav>
-        </div>
-        <div class="interativos">
-          <ul>
-            <!-- Botão "Buscar" será acionado via JavaScript -->
-            <li><a href="#" id="buscar-btn">Buscar</a></li>
-            <li><a href="#">Login</a></li>
-          </ul>
-        </div>
+          <div class="col-logo">
+              <a href="/index.html">
+                  <img src="https://www.viamobilidade.com.br/custom/site-ccr-viamobilidade/img/logo-via-mobilidade.svg"
+                      width="260" height="35" alt="logo ViaMobilidade">
+              </a>
+          </div>
+          <div class="col-menu">
+              <nav class="menu">
+                  <ul>
+                      <li><a href="/index.html">Home</a></li>
+                      <li><a href="/sobre.html">Sobre Nós</a></li>
+                      <li><a href="/report.html">Relatar problema</a></li>
+                      <li><a href="/status.html">Status</a></li>
+                  </ul>
+              </nav>
+          </div>
+          <div class="interativos">
+              <ul>
+                  <!-- Botão "Buscar" será acionado via JavaScript -->
+                  <li><a href="#" id="buscar-btn">Buscar</a></li>
+                  <li><a href="#">Login</a></li>
+              </ul>
+          </div>
       </div>
     </header>
     <!-- Titulo -->
     <div id="titulo">
       <h1>Status das Linhas</h1>
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="/index.html">Home</a></li>
         <li><span>•</span></li>
         <li><a href="#">Status</a></li>
       </ul>
@@ -95,7 +91,7 @@
                     Status atual: <strong>Circulação de trens</strong>
                   </p>
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/93e35cd86831032a09553ddaee33fbd9734d20f357d3f3ef7eaaee0a4cbe8008?placeholderIfAbsent=true&apiKey=c73bc0ffa08f40b6baf0dc5957a984fb"
+                    src="img/bullet-amarelo.svg"
                     alt="Status icon for Linha 8"
                     class="status-icon"
                   />
@@ -148,7 +144,7 @@
                     Status atual: <strong>Operação normal</strong>
                   </p>
                   <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/ee426bef01774900ea9eb79a5b4d5b6371ab067ea9f3624b95d42d44b1c45c64?placeholderIfAbsent=true&apiKey=c73bc0ffa08f40b6baf0dc5957a984fb"
+                    src="img/bullet-verde.svg"
                     alt="Status icon for Linha 9"
                     class="status-icon"
                   />
@@ -200,117 +196,84 @@
     <!-- Rodapé -->
     <footer>
       <div class="footer-top">
-        <div class="cols">
-          <div class="large-50">
-            <h2>
-              <span>Acompanhe melhorias e</span>
-              <br />
-              novas funcionalidades
-            </h2>
-            <p>
-              Receba atualizações exclusivas sobre as inovações e melhorias do
-              sistema ViaMobilidade diretamente no seu e-mail.
-            </p>
+          <div class="cols">
+              <div class="large-50">
+                  <h2><span>Acompanhe melhorias e</span>
+                      <br>
+                      novas funcionalidades
+                  </h2>
+                  <p>Receba atualizações exclusivas sobre as inovações e melhorias do sistema ViaMobilidade
+                      diretamente no
+                      seu e-mail.</p>
+              </div>
+              <div class="large-50">
+                  <form>
+                      <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required><br>
+                      <button type="submit">Inscrever-se</button><br>
+                      <input type="checkbox" id="aceite" name="aceite" required>
+                      <label for="aceite">Eu aceito os termos e condições</label><br>
+                  </form>
+              </div>
           </div>
-          <div class="large-50">
-            <form>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Digite seu e-mail"
-                required
-              /><br />
-              <button type="submit">Inscrever-se</button><br />
-              <input type="checkbox" id="aceite" name="aceite" required />
-              <label for="aceite">Eu aceito os termos e condições</label><br />
-            </form>
+          <hr>
+          <div class="cols">
+              <div class="large-35">
+                  <a href="/index.html">
+                      <img src="img/logo-via-mobilidade-branco.png" width="260" height="35" alt="logo ViaMobilidade">
+                  </a>
+                  <div class="redes-sociais">
+                      <p>
+                          <a href="https://www.linkedin.com/company/viamobilidade-sp/">
+                              <span><i class="fab fa-linkedin-in"></i></span>
+                          </a>
+                      </p>
+                      <p>
+                          <a href="https://www.facebook.com/ViaMobilidadeLinhas8e9/">
+                              <span><i class="fab fa-facebook"></i></span>
+                          </a>
+                      </p>
+                      <p>
+                          <a href="https://www.instagram.com/viamobilidadelinhas8e9/">
+                              <span><i class="fab fa-instagram"></i></span>
+                          </a>
+                      <p>
+                          <a href="https://twitter.com/_Linhas8e9">
+                              <span><i class="fab fa-twitter"></i></span>
+                          </a>
+                      </p>
+                  </div>
+              </div>
+              <div class="large-20">
+                  <h4>Links Úteis</h4>
+                  <ul>
+                      <li><a href="/sobre.html">Sobre Nós</a></li>
+                      <li><a href="/report.html">Relatar Problema</a></li>
+                      <li><a href="/status.html">Status</a></li>
+                  </ul>
+              </div>
+              <div class="large-50">
+                  <h4>Telefone</h4>
+                  <p><strong>0800.770.7106</strong></p>
+                  <p>Segunda a Sexta, das 6h30 às 22h00<br>
+                      Sábado e Domingo, das 8h00 às 18h00</p>
+              </div>
+              <div class="large-20">
+                  <h4>Políticas</h4>
+                  <ul>
+                      <li><a href="https://www.viamobilidade.com.br/politica-de-privacidade/">Privacidade</a></li>
+                      <li><a href="https://www.viamobilidade.com.br/politica-de-cookies">Cookies</a></li>
+                      <li><a href="https://www.viamobilidade.com.br/termos-de-uso">Termos e condições</a></li>
+                  </ul>
+              </div>
           </div>
-        </div>
-        <hr />
-        <div class="cols">
-          <div class="large-35">
-            <a href="#">
-              <img
-                src="img/logo-via-mobilidade-branco.png"
-                width="260"
-                height="35"
-                alt="logo ViaMobilidade"
-              />
-            </a>
-            <div class="redes-sociais">
-              <p>
-                <a href="https://www.linkedin.com/company/viamobilidade-sp/">
-                  <span><i class="fab fa-linkedin-in"></i></span>
-                </a>
-              </p>
-              <p>
-                <a href="https://www.facebook.com/ViaMobilidadeLinhas8e9/">
-                  <span><i class="fab fa-facebook"></i></span>
-                </a>
-              </p>
-              <p>
-                <a href="https://www.instagram.com/viamobilidadelinhas8e9/">
-                  <span><i class="fab fa-instagram"></i></span>
-                </a>
-              </p>
-
-              <p>
-                <a href="https://twitter.com/_Linhas8e9">
-                  <span><i class="fab fa-twitter"></i></span>
-                </a>
-              </p>
-            </div>
-          </div>
-          <div class="large-20">
-            <h4>Links Úteis</h4>
-            <ul>
-              <li><a href="#">Sobre Nós</a></li>
-              <li><a href="#">Relatar Problema</a></li>
-              <li><a href="#">Status</a></li>
-            </ul>
-          </div>
-          <div class="large-50">
-            <h4>Telefone</h4>
-            <p><strong>0800.770.7106</strong></p>
-            <p>
-              Segunda a Sexta, das 6h30 às 22h00<br />
-              Sábado e Domingo, das 8h00 às 18h00
-            </p>
-          </div>
-          <div class="large-20">
-            <h4>Políticas</h4>
-            <ul>
-              <li>
-                <a
-                  href="https://www.viamobilidade.com.br/politica-de-privacidade/"
-                  >Privacidade</a
-                >
-              </li>
-              <li>
-                <a href="https://www.viamobilidade.com.br/politica-de-cookies"
-                  >Cookies</a
-                >
-              </li>
-              <li>
-                <a href="https://www.viamobilidade.com.br/termos-de-uso"
-                  >Termos e condições</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
       <div class="footer-bottom cols">
-        <div>
-          <p>© Copyright 2024 - ViaMobilidade. Todos os direitos reservados.</p>
-        </div>
-        <div>
-          <img
-            src="img/sigmo-logo.png"
-            alt="logo Sistema Inteligente de Gestão e Monitoramento Operacional"
-          />
-        </div>
+          <div>
+              <p>© Copyright 2024 - ViaMobilidade. Todos os direitos reservados.</p>
+          </div>
+          <div>
+              <img src="img/sigmo-logo.png" alt="logo Sistema Inteligente de Gestão e Monitoramento Operacional">
+          </div>
       </div>
     </footer>
   </body>
