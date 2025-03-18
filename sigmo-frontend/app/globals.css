@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
+
 
 :root {
   --background: #ffffff;
@@ -6,9 +8,15 @@
   --vinho: #8b2119;
   --verde: #01aa95;
   --grad-vinho: linear-gradient(305deg, #8b2119, #b84c44);
-  --font: Poppins, Arial, Helvetica, sans-serif;
+  --font: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 body {
-  color: var(--foreground);
+  font-family: 'Poppins', Arial, Helvetica, sans-serif !important;
+}
+
+@layer base {
+  blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
+    margin: revert-layer !important;
+  }
 }

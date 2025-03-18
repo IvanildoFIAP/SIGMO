@@ -7,19 +7,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-br">
       <head>
-        {/* Importa o Tailwind via CDN */}
         <link
           href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <title>SIGMO</title>
       </head>
       <body className="bg-gray-100">
-        {/* Cabeçalho da página */}
         <Header />
-        {/* Área principal onde as páginas serão renderizadas */}
         <main className="container mx-auto my-8">
           {children}
         </main>
-        {/* Rodapé da página */}
         <Footer />
       </body>
     </html>
