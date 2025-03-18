@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --vinho: #8b2119;
+  --verde: #01aa95;
+  --grad-vinho: linear-gradient(305deg, #8b2119, #b84c44);
+  --font: Poppins, Arial, Helvetica, sans-serif;
+}
+
+body {
+  color: var(--foreground);
+}
