@@ -8,15 +8,10 @@
   --vinho: #8b2119;
   --verde: #01aa95;
   --grad-vinho: linear-gradient(305deg, #8b2119, #b84c44);
+  --grad-verde: linear-gradient(305deg, #01aa95, #67e7d7);
   --font: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 body {
   font-family: 'Poppins', Arial, Helvetica, sans-serif !important;
-}
-
-@layer base {
-  blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
-    margin: revert-layer !important;
-  }
 }
