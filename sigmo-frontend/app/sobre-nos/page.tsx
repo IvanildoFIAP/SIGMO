@@ -127,8 +127,8 @@ export default function Home() {
                     {/* Integrante 3 */}
                     <div className="w-1/3 text-center">
                         <img
-                            src="https://media.licdn.com/dms/image/v2/D4D03AQHmcp5mEfIueA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1706548148403?e=1733961600&v=beta&t=hEGiywvS-w0wivCSgzTHbp7Yjpesnwh52oq99Nqgm7E"
-                            alt="Mulher negra, com cabelos de cor preta e expresamente alegre"
+                            src="https://media.licdn.com/dms/image/v2/D4D03AQHmcp5mEfIueA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1706548148403?e=1747872000&v=beta&t=GyBJGEK2SXfxEaoE46kBS6yA3tBmU6x47idIudEIc1E"
+                            alt="Mulher negra, com cabelos de cor preta e expressamente alegre"
                             className="w-full rounded-lg"
                         />
                         <h3 className="text-2xl font-medium text-[#444] mt-4">Leticia Sousa Prado Silva</h3>
