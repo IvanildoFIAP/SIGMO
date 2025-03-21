@@ -38,7 +38,7 @@ export default function Home() {
                             de transformar a maneira como monitoramos e gerenciamos o Centro de Controle de Operações (CCO) e a
                             infraestrutura das estações e trens. Centralizando a comunicação e o monitoramento, nosso sistema torna os
                             processos mais ágeis e permite uma interação direta e eficaz com os usuários, garantindo uma operação mais
-                            eficiente, segura e acessível para todos.
+                            eficiente, segura e acessível para todos os usários.
                         </p>
                         <p className="text-[#8c8c8c] mt-4">
                             Acreditamos que a tecnologia tem o poder de simplificar operações complexas e melhorar o dia a dia de
