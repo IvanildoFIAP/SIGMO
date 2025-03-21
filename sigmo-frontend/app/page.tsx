@@ -19,7 +19,7 @@ export default function Home() {
           </p>
           <div className="flex gap-4 mt-8">
             <Link
-              href="/report"
+              href="/reportar"
               className="bg-[#8b2119] text-white py-3 px-10 rounded-full font-bold"
             >
               Relatar agora

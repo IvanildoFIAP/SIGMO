@@ -2,6 +2,14 @@ import '../app/globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+export const metadata = {
+  title: "SIGMO",
+  description: "Sistema Integrado de Gestão e Monitoramento Operacional",
+  icons: {
+    icon: "/sigmo-favicon.ico",
+  },
+};
+
 // Esse componente define o layout raiz de todas as páginas 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
