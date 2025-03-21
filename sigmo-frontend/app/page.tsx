@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from 'next/link';
+import Chatbot from "@/components/Chatbot";
 
 export default function Home() {
   return (
@@ -103,76 +104,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Cards Status */}
-      <div className="max-w-[1292px] mx-auto mt-20">
-        <div className="flex gap-8">
-          {/* Card Linha 8 */}
-          <div
-            className="bg-no-repeat p-12 rounded-[35px] flex-1 bg-[-15px] bg-[auto_120%] drop-shadow-xl border !border-opacity-50 bg-white"
-            style={{ backgroundImage: "url('/img/8.png')" }}
-          >
-            <div className="pl-[120px]">
-              <h3 className="text-2xl font-light text-left">Acompanhe o status da Linha 8</h3>
-              <p className="text-[#8c8c8c] mt-4">
-                Confira o status operacional ou faça um reporte relacionado à Linha 8 Diamante.
-              </p>
-              <Link
-                href="/status#linha-8"
-                className="text-[#8b2119] font-medium mt-4 inline-block"
-              >
-                Saiba Mais &gt;
-              </Link>
-            </div>
-          </div>
-          {/* Card Linha 9 */}
-          <div
-            className="bg-no-repeat p-12 rounded-[35px] flex-1 bg-[-15px] bg-[auto_120%] drop-shadow-xl border !border-opacity-50 bg-white"
-            style={{ backgroundImage: "url('/img/9.png')" }}
-          >
-            <div className="pl-[120px]">
-              <h3 className="text-2xl font-light text-left">Acompanhe o status da Linha 9</h3>
-              <p className="text-[#8c8c8c] mt-4">
-                Confira o status operacional ou faça um reporte relacionado à Linha 9 Esmeralda.
-              </p>
-              <Link
-                href="/status#linha-9"
-                className="text-[#8b2119] font-medium mt-4 inline-block"
-              >
-                Saiba Mais &gt;
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Seção Chatbot */}
-      <section className="mt-40">
-        <div className="bg-[image:var(--grad-verde)] from-[#67e7d7] to-[#01aa95] rounded-[50px] shadow-lg flex">
-          <div className="w-1/2 flex items-end">
-            <img src="/img/vimo-2.png" alt="Chatbot" className="w-full -mt-5" />
-          </div>
-          <div className="w-1/2 p-12 self-center">
-            <h2 className="text-5xl font-bold text-white">
-              <span className="font-light">Converse com o Vimo</span>
-              <br />
-              Seu assistente virtual
-            </h2>
-            <p className="text-white mt-6">
-              Vimo é seu assistente virtual disponível 24 horas para responder suas dúvidas e ajudar
-              em tudo que precisar.
-            </p>
-            <Link
-              href="#"
-              className="bg-white text-[#01aa95] py-3 px-8 rounded-full font-bold mt-8 inline-block"
-            >
-              Conhecer o Vimo
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Chatbot />
 
       {/* Seção Benefícios */}
-      <section className="max-w-[1200px] mx-auto mt-20">
+      <section className="max-w-[1200px] mx-auto">
         <div className="text-center">
           <p className="text-[#8b2119] text-sm uppercase tracking-[4px]">
             Cuidado com sua jornada

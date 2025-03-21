@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from 'next/link';
+import Chatbot from "@/components/Chatbot";
 
 export default function Reportar() {
     return (
@@ -19,7 +20,7 @@ export default function Reportar() {
             </section>
 
             {/* Seção Report */}
-            <section id="secao-report" className="container mx-auto px-4 py-16">
+            <section id="secao-report" className="container mx-auto px-4 pt-16">
                 <div className="max-w-7xl mx-auto text-center">
                     <h2 className="text-3xl font-bold mb-4">Qual o tipo de problema que você encontrou?</h2>
                     <p className="text-gray-600 mb-8">
@@ -75,34 +76,9 @@ export default function Reportar() {
                 </div>
             </section>
 
-            {/* Cards Status */}
-            <div className="container mx-auto px-4 py-16">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Card Linha 8 */}
-                    <div className="status-card bg-white p-6 rounded-lg shadow-md">
-                        <h3 className="text-xl font-bold mb-4">Acompanhe o status da Linha 8</h3>
-                        <p className="text-gray-600 mb-4">
-                            Confira o status operacional ou faça um reporte relacionado à
-                            Linha 8 Diamante.
-                        </p>
-                        <a href="/status.html#linha-8" className="text-[#8b2119] font-semibold hover:underline">
-                            Saiba Mais &gt;
-                        </a>
-                    </div>
+            {/* Chatbot */}
+            <Chatbot/>
 
-                    {/* Card Linha 9 */}
-                    <div className="status-card bg-white p-6 rounded-lg shadow-md">
-                        <h3 className="text-xl font-bold mb-4">Acompanhe o status da Linha 9</h3>
-                        <p className="text-gray-600 mb-4">
-                            Confira o status operacional ou faça um reporte relacionado à
-                            Linha 9 Esmeralda.
-                        </p>
-                        <a href="/status.html#linha-9" className="text-[#8b2119] font-semibold hover:underline">
-                            Saiba Mais &gt;
-                        </a>
-                    </div>
-                </div>
-            </div>
         </>
     );
 }
