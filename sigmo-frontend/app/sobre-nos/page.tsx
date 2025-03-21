@@ -117,7 +117,7 @@ export default function Home() {
                     <div className="w-1/3 text-center">
                         <img
                             src="https://media.licdn.com/dms/image/v2/D4D03AQEJwbfMZyw_gw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1727742985998?e=1747872000&v=beta&t=N1xLk3ixfVPsS14nPnYguy5y7kI_0ubS_keUOkmViFU"
-                            alt="Mulher amarela, asiática de cabelo preto no comprimento do ombro"
+                            alt="Mulher amarela, asiática de cabelo preto no comprimento do ombro e 1,60m de altura"
                             className="w-full rounded-lg"
                         />
                         <h3 className="text-2xl font-medium text-[#444] mt-4">Jennyfer Lee</h3>
