@@ -116,7 +116,7 @@ export default function Home() {
 
                     <div className="w-1/3 text-center">
                         <img
-                            src="https://media.licdn.com/dms/image/v2/D4D03AQEJwbfMZyw_gw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1727742985998?e=1733961600&v=beta&t=x9IojdWtKus2nOmkaGgUZp0rTEukGeYf7BQqOhML18s"
+                            src="https://media.licdn.com/dms/image/v2/D4D03AQEJwbfMZyw_gw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1727742985998?e=1747872000&v=beta&t=N1xLk3ixfVPsS14nPnYguy5y7kI_0ubS_keUOkmViFU"
                             alt="Mulher amarela, asiática de cabelo preto no comprimento do ombro"
                             className="w-full rounded-lg"
                         />
