@@ -15,7 +15,7 @@ const Chatbot = () => {
               Seu assistente virtual
             </h2>
             <p className="text-white mt-6">
-              Vimo é seu assistente virtual, ele está disponível 24 horas para responder suas dúvidas e ajudar
+              Vimo é seu assistente virtual disponível 24 horas para responder suas dúvidas e ajudar
               em tudo que precisar.
             </p>
             <Link
