@@ -42,7 +42,7 @@ export default function Home() {
                         </p>
                         <p className="text-[#8c8c8c] mt-4">
                             Acreditamos que a tecnologia tem o poder de simplificar operações complexas e melhorar o dia a dia de
-                            milhares de pessoas que utilizam o transporte público. E é isso que buscamos entregar com o SIGMO: um
+                            milhares de pessoas que utilizam o transporte público. É isso que buscamos entregar com o SIGMO: um
                             sistema que beneficia tanto os usuários quanto os operadores.
                         </p>
                     </div>
