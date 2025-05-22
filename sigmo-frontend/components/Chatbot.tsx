@@ -22,7 +22,7 @@ const Chatbot = () => {
               href="#"
               className="bg-white text-[#01aa95] py-3 px-8 rounded-full font-bold mt-8 inline-block"
             >
-              Conheça o Vimo
+              Conheça o Vimo!
             </Link>
           </div>
         </div>
