@@ -7,7 +7,7 @@ export default function Home() {
     return (
         <>
             <div id="titulo" className="w-full text-center py-8 bg-gray-100">
-                <h1 className="text-4xl font-bold text-[#8b2119] mb-4">Sobre Nós</h1>
+                <h1 className="text-4xl font-bold text-[#8b2119] mb-4">Sobre NOS</h1>
                 <ul className="flex justify-center items-center space-x-4 text-gray-700">
                     <li>
                         <a href="/" className="hover:text-[#8b2119] transition duration-300">Home</a>
