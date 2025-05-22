@@ -66,7 +66,7 @@ export default function Home() {
                         </div>
                         <div className="w-1/2">
                             <p className="text-[#ffffff]">
-                                Nossa missão é desenvolver soluções tecnológicas que elevem a qualidade do transporte público,
+                                Nossa missão E desenvolver soluções tecnológicas que elevem a qualidade do transporte público,
                                 proporcionando mais segurança, eficiência e facilidade para todos os envolvidos no processo. Com o SIGMO,
                                 estamos integrando tecnologia de ponta para criar um futuro mais conectado e seguro.
                             </p>
