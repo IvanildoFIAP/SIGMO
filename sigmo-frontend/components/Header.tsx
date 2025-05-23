@@ -41,11 +41,6 @@ const Header = () => {
 
       {/* Botões à direita */}
       <div className="flex space-x-[25px]">
-        <button onClick={() => setSearchOpen(!searchOpen)} className="text-[#8c8c8c] flex items-center !pr-[15px]">
-          <i className="fa fa-search pr-[15px]"></i> Buscar
-        </button>
-
-        <div className="border-l border-[#dedede]"></div>
 
         <Link href="/login" className="text-[#8c8c8c] flex items-center">
           <i className="fa fa-user pr-[15px]"></i> Login

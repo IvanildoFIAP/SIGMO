@@ -8,7 +8,6 @@ const api = axios.create({
   }
 });
 
-// Tipos baseados no seu JSON
 export interface Estacao {
   id: number;
   nome: string;
@@ -46,6 +45,26 @@ export const createReporte = async (reporteData: ReporteInput) => {
     return response.data;
   } catch (error) {
     console.error('Erro ao criar reporte:', error);
+    throw error;
+  }
+};
+
+export const updateReporte = async (reporteData: ReporteInput & { id: number }) => {
+  try {
+    const response = await api.put(`/reportes/${reporteData.id}`, reporteData);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao atualizar reporte:', error);
+    throw error;
+  }
+};
+
+export const deleteReporte = async (id: number) => {
+  try {
+    const response = await api.delete(`/reportes/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao deletar reporte:', error);
     throw error;
   }
 };

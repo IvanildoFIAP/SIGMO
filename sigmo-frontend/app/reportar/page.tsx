@@ -5,13 +5,14 @@ import {
   faSubway, faStairs, faElevator, faTicketAlt, faSign, faLightbulb,
   faTint, faToilet, faChair, faTrashAlt, faSnowflake, faInfoCircle,
   faBan, faExclamationTriangle, faTachometerAlt, faQuestionCircle,
-  faCheck, faArrowLeft, faArrowRight, faChevronDown, faSpinner
+  faCheck, faArrowLeft, faArrowRight, faChevronDown, faSpinner,
+  faPencilAlt, faSave, faTimes
 } from '@fortawesome/free-solid-svg-icons'
 import Chatbot from "@/components/Chatbot";
 import React, { useState, useEffect } from 'react';
-import { fetchLinhas, createReporte } from '@/services/api';
-import { Linha, Estacao } from '@/services/api';
+import { fetchLinhas, createReporte, updateReporte, deleteReporte, type Linha, type Estacao } from '@/services/api';
 
+// Tipos das seleções
 type Categoria = 'INFRAESTRUTURA' | 'SEGURANÇA' | 'CONFORTO_E_LIMPEZA' | 'SERVICOS' | 'OUTRO';
 type Impacto = 'BAIXO' | 'MEDIO' | 'ALTO' | 'CRITICO';
 
@@ -24,30 +25,18 @@ const AREAS_AFETADAS = {
   'OUTRO': ['OUTRO']
 };
 
+// Função para formatar texto (primeira letra maiúscula)
+const formatarTexto = (texto: string) => {
+  if (!texto) return '';
+  return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+};
+
 export default function Reportar() {
   // Estados
   const [step, setStep] = useState(1);
   const [linhas, setLinhas] = useState<Linha[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  // Buscar linhas ao carregar o componente
-  useEffect(() => {
-    const loadLinhas = async () => {
-      try {
-        setLoading(true);
-        const data = await fetchLinhas();
-        setLinhas(data);
-      } catch (err) {
-        console.error('Erro detalhado:', err);
-        setError('Erro ao carregar linhas. Verifique se o servidor está rodando em http://localhost:8080');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadLinhas();
-  }, []);
   
   // Estados do formulário
   const [categoriaSelecionada, setCategoriaSelecionada] = useState<Categoria | null>(null);
@@ -58,15 +47,24 @@ export default function Reportar() {
   const [descricao, setDescricao] = useState('');
   const [finalizado, setFinalizado] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [reporteId, setReporteId] = useState<number | null>(null);
+
+  // Estados para edição
+  const [editandoLinha, setEditandoLinha] = useState(false);
+  const [editandoEstacao, setEditandoEstacao] = useState(false);
+  const [linhaEditada, setLinhaEditada] = useState<Linha | null>(null);
+  const [estacaoEditada, setEstacaoEditada] = useState<Estacao | null>(null);
 
   // Buscar linhas ao carregar o componente
   useEffect(() => {
     const loadLinhas = async () => {
       try {
+        setLoading(true);
         const data = await fetchLinhas();
         setLinhas(data);
       } catch (err) {
-        setError('Erro ao carregar linhas. Tente novamente mais tarde.');
+        console.error('Erro ao carregar linhas:', err);
+        setError('Erro ao carregar linhas. Verifique se o servidor está rodando.');
       } finally {
         setLoading(false);
       }
@@ -92,7 +90,6 @@ export default function Reportar() {
   };
 
   // Funções
-
   const avancar = () => setStep(step + 1);
   const voltar = () => step > 1 && setStep(step - 1);
   
@@ -104,6 +101,7 @@ export default function Reportar() {
     }
 
     setIsSubmitting(true);
+    setError(null);
     
     try {
       const reporteData = {
@@ -115,17 +113,76 @@ export default function Reportar() {
         descricao: descricao
       };
 
-      await createReporte(reporteData);
+      const response = await createReporte(reporteData);
+      setReporteId(response.id);
       setFinalizado(true);
     } catch (err) {
-      setError('Erro ao enviar reporte. Tente novamente.');
+      console.error('Erro ao enviar reporte:', err);
+      setError('Erro ao enviar reporte. Verifique os dados e tente novamente.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const handleAtualizarReporte = async () => {
+    if (!reporteId || !linhaSelecionada || !estacaoSelecionada) {
+      setError('Linha e estação são obrigatórias');
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const reporteData = {
+        id: reporteId,
+        linha: { id: linhaSelecionada.id },
+        estacao: { id: estacaoSelecionada.id },
+        categoria: categoriaSelecionada!,
+        areaAfetada: areaAfetadaSelecionada!,
+        impacto: impactoSelecionado!,
+        descricao: descricao
+      };
+
+      await updateReporte(reporteData);
+      
+      setError(null);
+      setEditandoLinha(false);
+      setEditandoEstacao(false);
+      setLinhaEditada(null);
+      setEstacaoEditada(null);
+      alert('Alterações salvas com sucesso!');
+    } catch (err: any) {
+      console.error('Erro ao atualizar reporte:', err);
+      setError(err.response?.data?.message || 'Erro ao atualizar reporte. Tente novamente.');
+      
+      // Reverte as alterações em caso de erro
+      if (linhaEditada) setLinhaSelecionada(linhaEditada);
+      if (estacaoEditada) setEstacaoSelecionada(estacaoEditada);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleDeletarReporte = async () => {
+    if (!reporteId) return;
+
+    if (window.confirm('Tem certeza que deseja deletar este reporte?')) {
+      setIsSubmitting(true);
+      
+      try {
+        await deleteReporte(reporteId);
+        alert('Reporte deletado com sucesso!');
+        novoReporte();
+      } catch (err: any) {
+        console.error('Erro ao deletar reporte:', err);
+        setError(err.response?.data?.message || 'Erro ao deletar reporte. Tente novamente.');
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
+  };
+
   const novoReporte = () => {
-    // Resetar todos os estados para os valores iniciais
     setCategoriaSelecionada(null);
     setLinhaSelecionada(null);
     setEstacaoSelecionada(null);
@@ -133,11 +190,15 @@ export default function Reportar() {
     setImpactoSelecionado(null);
     setDescricao('');
     setFinalizado(false);
+    setReporteId(null);
     setStep(1);
     setError(null);
+    setEditandoLinha(false);
+    setEditandoEstacao(false);
+    setLinhaEditada(null);
+    setEstacaoEditada(null);
   };
 
-  // Renderização condicional para evitar erros
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -146,7 +207,7 @@ export default function Reportar() {
     );
   }
 
-  if (error) {
+  if (error && !finalizado) {
     return (
       <div className="text-center p-8">
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
@@ -154,7 +215,7 @@ export default function Reportar() {
         </div>
         <button 
           onClick={() => window.location.reload()}
-          className="bg-[image:var(--grad-vinho)] text-white px-4 py-2 rounded"
+          className="!bg-[image:var(--grad-vinho)] text-white px-4 py-2 rounded-full"
         >
           Tentar novamente
         </button>
@@ -166,13 +227,22 @@ export default function Reportar() {
     <>
       {!finalizado ? (
         <>
-          <section id="titulo-report" className="bg-[image:var(--grad-vinho)] text-white py-16 rounded-[50px]">
-            {/* ... mantido igual ... */}
+          <section id="titulo-report" className="!bg-[image:var(--grad-vinho)] text-white py-16 rounded-[50px]">
+            <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto text-center">
+                <p className="text-lg font-semibold mb-4">Facilite a Melhoria do serviço</p>
+                <h1 className="text-6xl font-bold mb-6 tracking-tight">Relate Problemas Rapidamente</h1>
+                <p className="text-gray-200">
+                  Ajude a manter o transporte funcionando sem falhas. Informe qualquer
+                  problema que você encontrar de forma simples e direta. Sua participação é
+                  essencial para melhorar a qualidade do serviço.
+                </p>
+              </div>
+            </div>
           </section>
 
           <section id="secao-report" className="container mx-auto px-4 pt-16">
             <div className="max-w-7xl mx-auto text-center">
-              {/* Stepper Moderno */}
               <div className="mb-12">
                 <div className="flex justify-between items-center w-full max-w-3xl mx-auto relative">
                   <div className="absolute top-4 left-16 right-16 h-1 bg-gray-200 z-0"></div>
@@ -180,7 +250,7 @@ export default function Reportar() {
                   {[1, 2, 3, 4, 5, 6].map((passo) => (
                     <div key={passo} className="flex flex-col items-center z-10">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center 
-                        ${step >= passo ? 'bg-[#8b2119] text-white' : 'bg-gray-200 text-gray-600'}`}>
+                        ${step >= passo ? '!bg-[image:var(--grad-vinho)] text-white' : 'bg-gray-200 text-gray-600'}`}>
                         {step > passo ? <FontAwesomeIcon icon={faCheck} className="text-xs" /> : passo}
                       </div>
                       <div className="mt-2 text-xs font-medium text-gray-600">
@@ -192,7 +262,6 @@ export default function Reportar() {
               </div>
 
               <div className="bg-white p-8 rounded-lg shadow-sm">
-                {/* Etapa 1 - Categoria */}
                 {step === 1 && (
                   <>
                     <h2 className="text-3xl font-bold mb-6">Qual o tipo de problema que você encontrou?</h2>
@@ -204,7 +273,7 @@ export default function Reportar() {
                           key={cat}
                           onClick={() => setCategoriaSelecionada(cat as Categoria)}
                           className={`min-h-44 p-6 border border-gray-200 rounded-lg flex flex-col items-center justify-center hover:shadow-md transition-shadow duration-300 cursor-pointer ${
-                            categoriaSelecionada === cat ? 'bg-[#8b2119] text-white' : ''
+                            categoriaSelecionada === cat ? '!bg-[image:var(--grad-vinho)] text-white' : ''
                           }`}
                         >
                           <FontAwesomeIcon 
@@ -212,7 +281,7 @@ export default function Reportar() {
                             className="w-10 h-10 mb-3" 
                           />
                           <span className="font-medium text-sm">
-                            {cat.split('_').join(' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                            {formatarTexto(cat.split('_').join(' '))}
                           </span>
                         </div>
                       ))}
@@ -220,7 +289,6 @@ export default function Reportar() {
                   </>
                 )}
 
-                {/* Etapa 2 - Linha */}
                 {step === 2 && (
                   <>
                     <h2 className="text-3xl font-bold mb-6">Em qual linha ocorreu o problema?</h2>
@@ -232,10 +300,10 @@ export default function Reportar() {
                           key={linha.id}
                           onClick={() => {
                             setLinhaSelecionada(linha);
-                            setEstacaoSelecionada(null); // Resetar estação ao mudar linha
+                            setEstacaoSelecionada(null);
                           }}
                           className={`min-h-44 p-6 border border-gray-200 rounded-lg flex flex-col items-center justify-center hover:shadow-md transition-shadow duration-300 cursor-pointer ${
-                            linhaSelecionada?.id === linha.id ? 'bg-[#8b2119] text-white' : ''
+                            linhaSelecionada?.id === linha.id ? '!bg-[image:var(--grad-vinho)] text-white' : ''
                           }`}
                         >
                           <FontAwesomeIcon 
@@ -246,62 +314,57 @@ export default function Reportar() {
                               'text-blue-400'
                             }`} 
                           />
-                          <span className="font-medium text-sm">{linha.nome.toLowerCase()}</span>
+                          <span className="font-medium text-sm">
+                            {formatarTexto(linha.nome)}
+                          </span>
                         </div>
                       ))}
                     </div>
                   </>
                 )}
 
-                {/* Etapa 3 - Estação */}
-                {step === 3 && (
+                {step === 3 && linhaSelecionada && (
                   <>
                     <h2 className="text-3xl font-bold mb-6">Em qual estação ocorreu o problema?</h2>
-                    {linhaSelecionada ? (
-                      <>
-                        <p className="text-gray-600 mb-8">Selecione a estação específica onde você identificou o problema.</p>
-                        <div className="max-w-md mx-auto mb-8">
-                          <div className="relative">
-                            <select
-                              value={estacaoSelecionada?.id || ''}
-                              onChange={(e) => {
-                                const selected = linhaSelecionada.estacoes.find(est => est.id === Number(e.target.value));
-                                setEstacaoSelecionada(selected || null);
-                              }}
-                              className="w-full p-4 border border-gray-300 rounded-lg appearance-none focus:ring-2 focus:ring-[#8b2119] focus:border-transparent"
-                            >
-                              <option value="">Selecione uma estação</option>
-                              {linhaSelecionada.estacoes.map((estacao) => (
-                                <option key={estacao.id} value={estacao.id}>
-                                  {estacao.nome.toLowerCase()}
-                                </option>
-                              ))}
-                            </select>
-                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                              <FontAwesomeIcon icon={faChevronDown} />
-                            </div>
-                          </div>
+                    <p className="text-gray-600 mb-8">Selecione a estação específica onde você identificou o problema.</p>
+
+                    <div className="max-w-md mx-auto mb-8">
+                      <div className="relative">
+                        <select
+                          value={estacaoSelecionada?.id || ''}
+                          onChange={(e) => {
+                            const selected = linhaSelecionada.estacoes.find(est => est.id === Number(e.target.value));
+                            setEstacaoSelecionada(selected || null);
+                          }}
+                          className="w-full p-4 border border-gray-300 rounded-lg appearance-none focus:ring-2 focus:ring-[#8b2119] focus:border-transparent"
+                        >
+                          <option value="">Selecione uma estação</option>
+                          {linhaSelecionada.estacoes.map((estacao) => (
+                            <option key={estacao.id} value={estacao.id}>
+                              {formatarTexto(estacao.nome)}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                          <FontAwesomeIcon icon={faChevronDown} />
                         </div>
-                      </>
-                    ) : (
-                      <p className="text-red-500">Por favor, selecione uma linha primeiro</p>
-                    )}
+                      </div>
+                    </div>
                   </>
                 )}
 
-                {/* Etapa 4 - Área Afetada */}
                 {step === 4 && categoriaSelecionada && (
                   <>
                     <h2 className="text-3xl font-bold mb-6">Qual área foi afetada?</h2>
                     <p className="text-gray-600 mb-8">Selecione a área específica onde você identificou o problema.</p>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
                       {AREAS_AFETADAS[categoriaSelecionada].map((area) => (
                         <div
                           key={area}
                           onClick={() => setAreaAfetadaSelecionada(area)}
                           className={`min-h-44 p-6 border border-gray-200 rounded-lg flex flex-col items-center justify-center hover:shadow-md transition-shadow duration-300 cursor-pointer ${
-                            areaAfetadaSelecionada === area ? 'bg-[#8b2119] text-white' : ''
+                            areaAfetadaSelecionada === area ? '!bg-[image:var(--grad-vinho)] text-white' : ''
                           }`}
                         >
                           <FontAwesomeIcon 
@@ -317,7 +380,7 @@ export default function Reportar() {
                             className="w-10 h-10 mb-3" 
                           />
                           <span className="font-medium text-sm text-center">
-                            {area.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                            {formatarTexto(area)}
                           </span>
                         </div>
                       ))}
@@ -325,7 +388,6 @@ export default function Reportar() {
                   </>
                 )}
 
-                {/* Etapa 5 - Impacto */}
                 {step === 5 && (
                   <>
                     <h2 className="text-3xl font-bold mb-6">Qual o grau do problema?</h2>
@@ -337,7 +399,7 @@ export default function Reportar() {
                           key={impacto}
                           onClick={() => setImpactoSelecionado(impacto)}
                           className={`min-h-44 p-6 border border-gray-200 rounded-lg flex flex-col items-center justify-center hover:shadow-md transition-shadow duration-300 cursor-pointer ${
-                            impactoSelecionado === impacto ? 'bg-[#8b2119] text-white' : ''
+                            impactoSelecionado === impacto ? '!bg-[image:var(--grad-vinho)] text-white' : ''
                           }`}
                         >
                           <FontAwesomeIcon 
@@ -345,7 +407,7 @@ export default function Reportar() {
                             className="w-10 h-10 mb-3" 
                           />
                           <span className="font-medium text-sm text-center">
-                            {impacto === 'MEDIO' ? 'MÉDIO' : impacto.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                            {impacto === 'MEDIO' ? 'Médio' : formatarTexto(impacto)}
                           </span>
                         </div>
                       ))}
@@ -353,7 +415,6 @@ export default function Reportar() {
                   </>
                 )}
 
-                {/* Etapa 6 - Detalhes */}
                 {step === 6 && (
                   <>
                     <h2 className="text-3xl font-bold mb-6">Deseja adicionar mais detalhes?</h2>
@@ -371,7 +432,12 @@ export default function Reportar() {
                   </>
                 )}
 
-                {/* Botões de Navegação */}
+                {error && (
+                  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+                    {error}
+                  </div>
+                )}
+
                 <div className="flex justify-center gap-4">
                   {step > 1 && (
                     <button 
@@ -392,7 +458,7 @@ export default function Reportar() {
                         (step === 4 && !areaAfetadaSelecionada) ||
                         (step === 5 && !impactoSelecionado)
                       }
-                      className={`bg-[image:var(--grad-vinho)] text-white px-9 py-3.5 rounded-full hover:opacity-90 transition duration-300 ${
+                      className={`!bg-[image:var(--grad-vinho)] text-white px-9 py-3.5 rounded-full hover:opacity-90 transition duration-300 ${
                         (step === 1 && !categoriaSelecionada) ||
                         (step === 2 && !linhaSelecionada) ||
                         (step === 3 && !estacaoSelecionada) ||
@@ -406,7 +472,7 @@ export default function Reportar() {
                     <button 
                       onClick={finalizar}
                       disabled={isSubmitting}
-                      className={`bg-[image:var(--grad-vinho)] text-white px-9 py-3.5 rounded-full hover:opacity-90 transition duration-300 ${
+                      className={`!bg-[image:var(--grad-vinho)] text-white px-9 py-3.5 rounded-full hover:opacity-90 transition duration-300 ${
                         isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                       }`}
                     >
@@ -441,30 +507,172 @@ export default function Reportar() {
               <h3 className="text-xl font-semibold mb-4">Resumo do Reporte</h3>
               <div className="space-y-3">
                 <p><span className="text-gray-600">Categoria:</span> <span className="font-medium">
-                  {categoriaSelecionada?.split('_').join(' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                  {formatarTexto(categoriaSelecionada?.split('_').join(' ') || '')}
                 </span></p>
-                <p><span className="text-gray-600">Linha:</span> <span className="font-medium">
-                  {linhaSelecionada?.nome.toLowerCase()}
-                </span></p>
-                <p><span className="text-gray-600">Estação:</span> <span className="font-medium">
-                  {estacaoSelecionada?.nome.toLowerCase()}
-                </span></p>
+                
+                {/* Linha - Editável */}
+                <div className="flex items-center">
+                  <span className="text-gray-600">Linha:</span>
+                  {editandoLinha ? (
+                    <div className="ml-2 flex items-center">
+                      <select
+                        value={linhaSelecionada?.id || ''}
+                        onChange={(e) => {
+                          const selected = linhas.find(linha => linha.id === Number(e.target.value));
+                          if (selected) setLinhaSelecionada(selected);
+                        }}
+                        className="p-2 border border-gray-300 rounded-lg"
+                      >
+                        {linhas.map((linha) => (
+                          <option key={linha.id} value={linha.id}>
+                            {formatarTexto(linha.nome)}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="ml-2 flex gap-1">
+                        <button onClick={handleAtualizarReporte} className="text-green-600">
+                          <FontAwesomeIcon icon={faCheck} />
+                        </button>
+                        <button 
+                          onClick={() => {
+                            setEditandoLinha(false);
+                            if (linhaEditada) setLinhaSelecionada(linhaEditada);
+                          }} 
+                          className="text-red-600"
+                        >
+                          <FontAwesomeIcon icon={faTimes} />
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <span className="font-medium ml-2">
+                        {formatarTexto(linhaSelecionada?.nome || '')}
+                      </span>
+                      <button 
+                        onClick={() => {
+                          setLinhaEditada(linhaSelecionada);
+                          setEditandoLinha(true);
+                        }}
+                        className="ml-2 text-gray-500 hover:text-gray-700"
+                      >
+                        <FontAwesomeIcon icon={faPencilAlt} />
+                      </button>
+                    </>
+                  )}
+                </div>
+                
+                {/* Estação - Editável */}
+                <div className="flex items-center">
+                  <span className="text-gray-600">Estação:</span>
+                  {editandoEstacao ? (
+                    <div className="ml-2 flex items-center">
+                      <select
+                        value={estacaoSelecionada?.id || ''}
+                        onChange={(e) => {
+                          const selected = linhaSelecionada?.estacoes.find(est => est.id === Number(e.target.value));
+                          if (selected) setEstacaoSelecionada(selected);
+                        }}
+                        className="p-2 border border-gray-300 rounded-lg"
+                        disabled={!linhaSelecionada}
+                      >
+                        {linhaSelecionada?.estacoes.map((estacao) => (
+                          <option key={estacao.id} value={estacao.id}>
+                            {formatarTexto(estacao.nome)}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="ml-2 flex gap-1">
+                        <button onClick={handleAtualizarReporte} className="text-green-600">
+                          <FontAwesomeIcon icon={faCheck} />
+                        </button>
+                        <button 
+                          onClick={() => {
+                            setEditandoEstacao(false);
+                            if (estacaoEditada) setEstacaoSelecionada(estacaoEditada);
+                          }} 
+                          className="text-red-600"
+                        >
+                          <FontAwesomeIcon icon={faTimes} />
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <span className="font-medium ml-2">
+                        {formatarTexto(estacaoSelecionada?.nome || '')}
+                      </span>
+                      <button 
+                        onClick={() => {
+                          setEstacaoEditada(estacaoSelecionada);
+                          setEditandoEstacao(true);
+                        }}
+                        className="ml-2 text-gray-500 hover:text-gray-700"
+                        disabled={!linhaSelecionada}
+                      >
+                        <FontAwesomeIcon icon={faPencilAlt} />
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {/* Demais campos */}
                 <p><span className="text-gray-600">Área afetada:</span> <span className="font-medium">
-                  {areaAfetadaSelecionada?.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                  {formatarTexto(areaAfetadaSelecionada || '')}
                 </span></p>
                 <p><span className="text-gray-600">Grau do problema:</span> <span className="font-medium">
-                  {impactoSelecionado === 'MEDIO' ? 'MÉDIO' : impactoSelecionado?.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                  {impactoSelecionado === 'MEDIO' ? 'Médio' : formatarTexto(impactoSelecionado || '')}
                 </span></p>
                 {descricao && <p><span className="text-gray-600">Detalhes:</span> <span className="font-medium">{descricao}</span></p>}
               </div>
             </div>
             
-            <button
-              onClick={novoReporte}
-              className="bg-[image:var(--grad-vinho)] text-white px-9 py-3.5 rounded-full hover:opacity-90 transition duration-300"
-            >
-              Fazer novo reporte
-            </button>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={novoReporte}
+                className="!bg-[image:var(--grad-vinho)] text-white px-6 py-3 rounded-full hover:opacity-90 transition duration-300"
+              >
+                Fazer novo reporte
+              </button>
+              
+              <button
+                onClick={handleDeletarReporte}
+                className="bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition duration-300"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <FontAwesomeIcon icon={faSpinner} spin className="mr-2" />
+                    Excluindo...
+                  </>
+                ) : (
+                  <>
+                    <FontAwesomeIcon icon={faTrashAlt} className="mr-2" />
+                    Excluir Reporte
+                  </>
+                )}
+              </button>
+              
+              {(editandoLinha || editandoEstacao) && (
+                <button
+                  onClick={handleAtualizarReporte}
+                  className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <FontAwesomeIcon icon={faSpinner} spin className="mr-2" />
+                      Salvando...
+                    </>
+                  ) : (
+                    <>
+                      <FontAwesomeIcon icon={faSave} className="mr-2" />
+                      Salvar Alterações
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
           </div>
         </section>
       )}
